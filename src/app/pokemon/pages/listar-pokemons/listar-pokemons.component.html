@@ -1,0 +1,12 @@
+<div class="card">
+    <div *ngIf="entidade" class="grid text-center">
+        <p-card *ngFor="let pokemon of entidade" class="col-2">
+            <p-image [src]="pokemon.sprites.front_default" alt="Image" width="150"></p-image>
+            <p>
+                #{{pokemon.id}} <br>
+                {{pokemon.name}} <br>
+                {{pokemon.types.length > 1 ? pokemon.types[0].type.name + ' · ' + pokemon.types[1].type.name : pokemon.types[0].type.name}}
+            </p>
+        </p-card>
+    </div>
+</div>
