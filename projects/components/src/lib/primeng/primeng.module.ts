@@ -25,6 +25,7 @@ import {FieldsetModule} from 'primeng/fieldset';
 import {FileUploadModule} from 'primeng/fileupload';
 import {GalleriaModule} from 'primeng/galleria';
 import {GMapModule} from 'primeng/gmap';
+import {ImageModule} from 'primeng/image';
 import {InplaceModule} from 'primeng/inplace';
 import {InputMaskModule} from 'primeng/inputmask';
 import {InputSwitchModule} from 'primeng/inputswitch';
@@ -97,6 +98,7 @@ const imports = [
     FileUploadModule,
     GalleriaModule,
     GMapModule,
+    ImageModule,
     InplaceModule,
     InputMaskModule,
     InputSwitchModule,
