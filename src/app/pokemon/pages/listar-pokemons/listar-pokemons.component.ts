@@ -1,4 +1,5 @@
 import {Component, OnInit} from '@angular/core';
+import {Router} from '@angular/router';
 
 @Component({
     selector: 'app-pokemon-listar',
@@ -30,7 +31,9 @@ export class ListarPokemonsComponent implements OnInit {
         'pidgeot'
     ]
 
-    constructor() {
+    constructor(
+        private router: Router
+    ) {
     }
 
     ngOnInit(): void {
@@ -46,6 +49,10 @@ export class ListarPokemonsComponent implements OnInit {
 
             }
         })();
+    }
+
+    onClickDetalhesPokemon(pokemon) {
+        this.router.navigate([`pokemon/detalhes/${pokemon.name}`])
     }
 
 }

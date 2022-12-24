@@ -1,0 +1,26 @@
+<ng-container *ngIf="pokemonSelecionado">
+    <p>Pokédex | {{pokemonSelecionado.name}}</p>
+    <p-image [src]="pokemonSelecionado.sprites.front_default" alt="Image" width="125"></p-image>
+
+    <div>
+        <h3>Abilities:</h3>
+        <p *ngFor="let ability of pokemonSelecionado.abilities">
+            {{ability.ability.name}} <strong>{{ability.is_hidden ? '[Hidden Ability]' : null }}</strong>
+        </p>
+    </div>
+
+    <div>
+        <h3>Base stats:</h3>
+        <p *ngFor="let stat of pokemonSelecionado.stats">
+            {{stat.stat.name}}: {{stat.base_stat}}
+        </p>
+    </div>
+
+    <div>
+        <h3>Pokédex entries:</h3>
+        <p *ngFor="let descricao of descricaoPokemon">
+            Game: {{descricao.version}} <br>
+            Descrição: {{descricao.text}}
+        </p>
+    </div>
+</ng-container>

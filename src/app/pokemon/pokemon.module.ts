@@ -4,18 +4,20 @@ import {ComponentsModule} from 'projects/components/src/public-api';
 import {PokemonRoutingModule} from './pokemon-routing.module';
 
 import {PokemonComponent} from './pokemon.component';
-import {ListarPokemonsComponent} from './pages/listar-pokemons/listar-pokemons.component';
+import {DetalhesPokemonComponent, ListarPokemonsComponent} from './pages';
 
 @NgModule({
-    declarations: [
-        PokemonComponent,
-        ListarPokemonsComponent
-    ],
     imports: [
         ComponentsModule,
         PokemonRoutingModule
     ],
-    exports: []
+    exports: [
+    ],
+    declarations: [
+        PokemonComponent,
+        ListarPokemonsComponent,
+        DetalhesPokemonComponent
+    ],
 })
 export class PokemonModule {
 }
