@@ -3,6 +3,9 @@
   "compilerOptions": {
     "baseUrl": "./",
     "paths": {
+      "api": [
+        "dist/api"
+      ],
       "components": [
         "dist/components"
       ]

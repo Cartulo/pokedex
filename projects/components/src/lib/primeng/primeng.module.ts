@@ -149,9 +149,6 @@ const imports = [
 ];
 
 @NgModule({
-    imports: [
-        ...imports
-    ],
     declarations: [],
     providers: [
         ConfirmationService,
@@ -159,6 +156,9 @@ const imports = [
         MessageService
     ],
     exports: [
+        ...imports
+    ],
+    imports: [
         ...imports
     ]
 })

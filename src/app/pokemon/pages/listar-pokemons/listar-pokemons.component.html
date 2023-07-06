@@ -1,6 +1,6 @@
 <div class="card">
-    <div *ngIf="listaDePokemons" class="grid text-center">
-        <p-card *ngFor="let pokemon of listaDePokemons" class="col-2" (click)="onClickDetalhesPokemon(pokemon)">
+    <div *ngIf="entidades" class="grid text-center">
+        <p-card *ngFor="let pokemon of entidades" class="col-2" (click)="onClickDetalhesPokemon(pokemon)">
             <p-image [src]="pokemon.spriteFrente" alt="Image" width="125"></p-image>
             <p>
                 #{{pokemon.numeroNationalDex}} <br>
