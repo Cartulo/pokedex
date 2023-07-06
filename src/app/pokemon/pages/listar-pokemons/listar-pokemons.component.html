@@ -1,11 +1,15 @@
 <div class="card">
-    <div *ngIf="entidade" class="grid text-center">
-        <p-card *ngFor="let pokemon of entidade" class="col-2" (click)="onClickDetalhesPokemon(pokemon)">
-            <p-image [src]="pokemon.sprites.front_default" alt="Image" width="125"></p-image>
+    <div *ngIf="listaDePokemons" class="grid text-center">
+        <p-card *ngFor="let pokemon of listaDePokemons" class="col-2" (click)="onClickDetalhesPokemon(pokemon)">
+            <p-image [src]="pokemon.spriteFrente" alt="Image" width="125"></p-image>
             <p>
-                #{{pokemon.id}} <br>
-                {{pokemon.name}} <br>
-                {{pokemon.types.length > 1 ? pokemon.types[0].type.name + ' · ' + pokemon.types[1].type.name : pokemon.types[0].type.name}}
+                #{{pokemon.numeroNationalDex}} <br>
+                {{pokemon.nomeEspecie}} <br>
+                <ng-container *ngFor="let tipagem of pokemon.tipagens; let i = index">
+                    <small [ngStyle]="{'color': tipagem.hexColor}">
+                        {{tipagem.nome}}<ng-container *ngIf="pokemon.tipagens[1].nome && i == 0"> - </ng-container>
+                    </small>
+                </ng-container>
             </p>
         </p-card>
     </div>
