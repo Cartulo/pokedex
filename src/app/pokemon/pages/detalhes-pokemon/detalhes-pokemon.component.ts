@@ -1,35 +1,29 @@
 import {Component} from '@angular/core';
-import {ActivatedRoute, Router} from '@angular/router';
+import {ActivatedRoute} from '@angular/router';
+import {PokeapiWrapperApiService} from 'projects/api/src/lib/modules/pokemon';
 
 @Component({
     selector: 'app-pokemon-detalhes',
     templateUrl: './detalhes-pokemon.component.html',
 })
 export class DetalhesPokemonComponent {
-    Pokedex = require("pokeapi-js-wrapper")
-    service = new this.Pokedex.Pokedex()
-
     pokemonSelecionado: any;
     descricaoPokemon: any = [];
 
     constructor(
-        private route: ActivatedRoute) {
+        private route: ActivatedRoute,
+        private service: PokeapiWrapperApiService) {
         this.obterPokemonPelaRota();
     }
 
     onClickInfoPokemon() {
         console.clear();
         console.log('pokemonSelecionado', this.pokemonSelecionado)
-        console.log('descricaoPokemon', this.descricaoPokemon)
     }
 
     obterPokemonPelaRota() {
         this.route.params.subscribe(async pokemon => {
-            this.pokemonSelecionado = await this.service.getPokemonByName(pokemon.pokemon);
-            let pokemonDetalhado = await this.service.getPokemonSpeciesByName(this.pokemonSelecionado.name);
-            this.obterDetalhesPeloNome(pokemonDetalhado);
-
-            this.obterSpecies(pokemonDetalhado);
+            this.pokemonSelecionado = await this.service.obterPokemonPeloNome(pokemon.pokemon);
         })
     }
 

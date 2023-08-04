@@ -1,6 +1,6 @@
 import {Injectable} from '@angular/core';
 
-import {Pokemon, Tipagem} from './models';
+import {Ability, BaseStat, Pokemon, Tipagem} from './models';
 
 @Injectable({providedIn: 'root'})
 export class PokeapiWrapperApiService {
@@ -34,13 +34,16 @@ export class PokeapiWrapperApiService {
         return this.formatarDados(pokemon);
     }
 
+    // #region Métodos Auxiliares
     private formatarDados(entidade) {
         let pokemon = new Pokemon;
 
         pokemon.numeroNationalDex = this.formatarNumeroPokedex(entidade);
         pokemon.nomeEspecie = this.formatarNomeEspecie(entidade.name);
-        pokemon.tipagens = this.formatarTipagens(entidade);
         pokemon.spriteFrente = entidade.sprites.front_default;
+        pokemon.tipagens = this.formatarTipagens(entidade);
+        pokemon.habilidades = this.formatarHabilidades(entidade.abilities);
+        pokemon.statusBase = this.formatarStatusBase(entidade.stats);
 
         return pokemon;
     }
@@ -78,8 +81,48 @@ export class PokeapiWrapperApiService {
         return listaTipagens;
     }
 
+    private formatarHabilidades(entidade): Ability[] {
+        let abilities: Ability[] = [];
+
+        entidade.forEach(ability => {
+            let formatedAbility = new Ability;
+
+            formatedAbility.name = ability.ability.name;
+            formatedAbility.isHidden = ability.is_hidden;
+
+            abilities.push(formatedAbility);
+        })
+
+        return abilities;
+    }
+
+    private formatarStatusBase(entidade): BaseStat[] {
+        let resultado: BaseStat[] = [];
+
+        entidade.forEach(stat => {
+            let baseStat = new BaseStat;
+
+            baseStat.nome = this.formatarNomeStatusBase(stat.stat.name);
+            baseStat.valor = stat.base_stat;
+
+            resultado.push(baseStat);
+        })
+
+        return resultado
+    }
+
     private formatarPrimeiraLetraParaMaisculo(palavra: string): string {
         return palavra[0].toUpperCase() + palavra.substring(1);
     }
+
+    private formatarNomeStatusBase(statusBase): string {
+        return statusBase;
+
+        let resultado: string;
+
+        return resultado;
+    }
+
+    // #endregion
 
 }
