@@ -1,4 +1,4 @@
 export class Tipagem {
-    nome: string;
+    name: string;
     hexColor: string;
 }

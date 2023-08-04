@@ -3,8 +3,8 @@ import {NgModule} from '@angular/core';
 import {ComponentsModule} from 'projects/components/src/public-api';
 import {PokemonRoutingModule} from './pokemon-routing.module';
 
+import {ListarPokemonsComponent, PokemonDetailsComponent} from './pages';
 import {PokemonComponent} from './pokemon.component';
-import {DetalhesPokemonComponent, ListarPokemonsComponent} from './pages';
 
 @NgModule({
     imports: [
@@ -16,7 +16,7 @@ import {DetalhesPokemonComponent, ListarPokemonsComponent} from './pages';
     declarations: [
         PokemonComponent,
         ListarPokemonsComponent,
-        DetalhesPokemonComponent
+        PokemonDetailsComponent
     ],
 })
 export class PokemonModule {

@@ -1,14 +1,14 @@
 import {Ability} from "./ability";
-import {BaseStat} from "./status-base";
-import {Tipagem} from "./tipagem";
+import {BaseStat} from "./base-stat";
+import {Tipagem} from "./type";
 
 export class Pokemon {
-    numeroNationalDex: string;
-    nomeEspecie: string;
-    statusBase: BaseStat[];
-    tipagens: Tipagem[];
-    tipagensDesc: string;
-    habilidades: Ability[];
-    spriteFrente: string;
-    spriteCostas: string;
+    nationalDexNumber: string;
+    specieName: string;
+    baseStats: BaseStat[];
+    types: Tipagem[];
+    typeDescription: string;
+    abilities: Ability[];
+    spriteFront: string;
+    spriteBack: string;
 };

@@ -1,24 +1,24 @@
-<ng-container *ngIf="pokemonSelecionado">
-    <p-card [header]="descricaoPokemon.name" class="card card-shadow">
+<ng-container *ngIf="selectedPokemon">
+    <p-card [header]="selectedPokemon.specieName" class="card card-shadow">
         <div class="flex align-content-start">
             <div>
-                <p-image [src]="pokemonSelecionado.spriteFrente" alt="Image" width="125"
-                    (click)="onClickInfoPokemon()"></p-image>
+                <p-image [src]="selectedPokemon.spriteFront" alt="Image" width="125"
+                    (click)="onClickPokemonInfo()"></p-image>
             </div>
 
             <div class="grid">
                 <div class="col-12 flex justify-content-start flex-wrap p-0">
                     <strong>National Nº</strong>
-                    <p class="pl-2 m-0">{{pokemonSelecionado.numeroNationalDex}}</p>
+                    <p class="pl-2 m-0">{{selectedPokemon.nationalDexNumber}}</p>
                 </div>
                 <div class="col-12 flex justify-content-start flex-wrap p-0">
                     <strong>Species</strong>
-                    <!-- <p class="pl-2 m-0">{{descricaoPokemon.species}}</p> -->
+                    <!-- <p class="pl-2 m-0">{{selectedPokemon.species}}</p> -->
                 </div>
                 <div class="col-12 flex justify-content-start flex-wrap p-0">
                     <strong>Abilities</strong>
                     <div>
-                        <p *ngFor="let ability of pokemonSelecionado.habilidades" class="pl-2 m-0">
+                        <p *ngFor="let ability of selectedPokemon.abilities" class="pl-2 m-0">
                             {{ability.name}} {{ability.isHidden ? '(hidden ability)' : null}}
                         </p>
                     </div>
@@ -26,8 +26,8 @@
             </div>
 
             <div class="grid">
-                <small *ngFor="let stat of pokemonSelecionado.statusBase" class="col-12 p-0">
-                    {{stat.nome}}: {{stat.valor}}
+                <small *ngFor="let stat of selectedPokemon.baseStats" class="col-12 p-0">
+                    {{stat.name}}: {{stat.value}}
                 </small>
             </div>
         </div>

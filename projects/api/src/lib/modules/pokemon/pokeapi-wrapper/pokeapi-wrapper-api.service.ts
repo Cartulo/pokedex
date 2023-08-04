@@ -28,27 +28,27 @@ export class PokeapiWrapperApiService {
         {name: 'water', hexColor: '#6390F0'},
     ]
 
-    async obterPokemonPeloNome(nome: string) {
+    async getPokemonByName(nome: string) {
         let pokemon = await this.service.getPokemonByName(nome);
 
-        return this.formatarDados(pokemon);
+        return this.formatData(pokemon);
     }
 
     // #region Métodos Auxiliares
-    private formatarDados(entidade) {
+    private formatData(entidade) {
         let pokemon = new Pokemon;
 
-        pokemon.numeroNationalDex = this.formatarNumeroPokedex(entidade);
-        pokemon.nomeEspecie = this.formatarNomeEspecie(entidade.name);
-        pokemon.spriteFrente = entidade.sprites.front_default;
-        pokemon.tipagens = this.formatarTipagens(entidade);
-        pokemon.habilidades = this.formatarHabilidades(entidade.abilities);
-        pokemon.statusBase = this.formatarStatusBase(entidade.stats);
+        pokemon.nationalDexNumber = this.formatPokedexNumber(entidade);
+        pokemon.specieName = this.formatSpecieName(entidade.name);
+        pokemon.spriteFront = entidade.sprites.front_default;
+        pokemon.types = this.formatTypes(entidade);
+        pokemon.abilities = this.formatAbilities(entidade.abilities);
+        pokemon.baseStats = this.formatBaseStats(entidade.stats);
 
         return pokemon;
     }
 
-    private formatarNumeroPokedex(entidade): string {
+    private formatPokedexNumber(entidade): string {
         let numeroPokedex = entidade.id;
         let prefixoNum = '0';
         let tamanhoNum = 4;
@@ -58,33 +58,31 @@ export class PokeapiWrapperApiService {
         return numeroPokedexFormatado;
     }
 
-    private formatarNomeEspecie(entidade): string {
-        return this.formatarPrimeiraLetraParaMaisculo(entidade);
+    private formatSpecieName(entidade): string {
+        return this.formatFirstLetterToUppercase(entidade);
     }
 
-    private formatarTipagens(entidade): Tipagem[] {
+    private formatTypes(entidade): Tipagem[] {
         let listaTipagens: Tipagem[] = [];
         let tipagemPrincipal = new Tipagem;
         let tipagemSecundaria = new Tipagem;
 
         if (entidade.types[1]) {
-            tipagemSecundaria.nome = entidade.types[1].type.name;
-            tipagemSecundaria.hexColor = this.tipagens.find(type => type.name === tipagemSecundaria.nome).hexColor;
-            tipagemSecundaria.nome = this.formatarPrimeiraLetraParaMaisculo(tipagemSecundaria.nome);
+            tipagemSecundaria.name = entidade.types[1].type.name;
+            tipagemSecundaria.hexColor = this.tipagens.find(type => type.name === tipagemSecundaria.name).hexColor;
+            tipagemSecundaria.name = this.formatFirstLetterToUppercase(tipagemSecundaria.name);
         }
 
-        tipagemPrincipal.nome = entidade.types[0].type.name;
-        tipagemPrincipal.hexColor = this.tipagens.find(type => type.name === tipagemPrincipal.nome).hexColor;
-        tipagemPrincipal.nome = this.formatarPrimeiraLetraParaMaisculo(tipagemPrincipal.nome);
+        tipagemPrincipal.name = entidade.types[0].type.name;
+        tipagemPrincipal.hexColor = this.tipagens.find(type => type.name === tipagemPrincipal.name).hexColor;
+        tipagemPrincipal.name = this.formatFirstLetterToUppercase(tipagemPrincipal.name);
 
         listaTipagens.push(tipagemPrincipal, tipagemSecundaria);
         return listaTipagens;
     }
 
-    private formatarHabilidades(entidade): Ability[] {
-        let abilities: Ability[] = [];
-
-        entidade.forEach(ability => {
+    private formatAbilities(abilities): Ability[] {
+        abilities.forEach(ability => {
             let formatedAbility = new Ability;
 
             formatedAbility.name = ability.ability.name;
@@ -96,14 +94,14 @@ export class PokeapiWrapperApiService {
         return abilities;
     }
 
-    private formatarStatusBase(entidade): BaseStat[] {
+    private formatBaseStats(baseStats): BaseStat[] {
         let resultado: BaseStat[] = [];
 
-        entidade.forEach(stat => {
+        baseStats.forEach(stat => {
             let baseStat = new BaseStat;
 
-            baseStat.nome = this.formatarNomeStatusBase(stat.stat.name);
-            baseStat.valor = stat.base_stat;
+            baseStat.name = this.formatBaseStatName(stat.stat.name);
+            baseStat.value = stat.base_stat;
 
             resultado.push(baseStat);
         })
@@ -111,12 +109,12 @@ export class PokeapiWrapperApiService {
         return resultado
     }
 
-    private formatarPrimeiraLetraParaMaisculo(palavra: string): string {
-        return palavra[0].toUpperCase() + palavra.substring(1);
+    private formatFirstLetterToUppercase(word: string): string {
+        return word[0].toUpperCase() + word.substring(1);
     }
 
-    private formatarNomeStatusBase(statusBase): string {
-        return statusBase;
+    private formatBaseStatName(baseStat): string {
+        return baseStat;
 
         let resultado: string;
 

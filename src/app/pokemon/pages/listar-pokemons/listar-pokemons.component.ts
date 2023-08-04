@@ -46,7 +46,7 @@ export class ListarPokemonsComponent implements OnInit {
 
     private async carregarDados() {
         for (const pokemon of this.listaNomePokemons) {
-            this.entidades.push(await this.service.obterPokemonPeloNome(pokemon));
+            this.entidades.push(await this.service.getPokemonByName(pokemon));
         }
     }
 }

@@ -1,12 +1,12 @@
 import {NgModule} from '@angular/core';
 import {RouterModule, Routes} from '@angular/router';
 
-import {DetalhesPokemonComponent, ListarPokemonsComponent} from './pages';
+import {ListarPokemonsComponent, PokemonDetailsComponent} from './pages';
 
 const routes: Routes = [
     {path: '', redirectTo: 'listar', pathMatch: 'full'},
     {path: 'listar', component: ListarPokemonsComponent},
-    {path: 'detalhes/:pokemon', component: DetalhesPokemonComponent}
+    {path: 'detalhes/:pokemon', component: PokemonDetailsComponent}
 ];
 
 @NgModule({
